@@ -3,21 +3,21 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import feedparser
 app=Flask(__name__)
 
 FEED = {'qq':"http://news.qq.com/newsgn/rss_newsgn.xml",
-        'baidu':'http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss',
         'rm':'http://www.people.com.cn/rss/politics.xml',
         'sina':'http://rss.sina.com.cn/news/china/focus15.xml',
-        'zhihu':"http://www.zhihujingxuan.com/rss",
-        '36':"http://36kr.com/feed"}
+        'yueguang':'http://feed.williamlong.info/'}
 @app.route("/")
-@app.route('/<publication>')
-def get_news(publication='qq'):
-    if publication not in FEED:
-        publication='sina'
+def get_news():
+    query = request.args.get("publication")
+    if not query or query.lower() not in FEED:
+        publication = "qq"
+    else:
+        publication = query.lower()
     feed = feedparser.parse(FEED[publication])
     return render_template("home.html",articles=feed['entries'])
 
