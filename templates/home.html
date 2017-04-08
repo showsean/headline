@@ -1,6 +1,6 @@
 <html>
 	<form>
-		<input type="text" name="publication" placeholder="search"/>
+		<input type="text" name="publication" placeholder="查询新闻站点"/>
 		<input type="submit" value="搜索"/>
 	</form>
 	<head>
@@ -8,6 +8,38 @@
 	</head>
 	<body>
 		<h1>头条</h1>
+		<h2>当前天气</h2>
+		{%for message in get_flashed_messages()%}
+		<div class=flash>{{message}}</div>
+		{%endfor%}
+		<form>
+			<input type="text" name="city" palceholder="搜索城市">
+			<input type="submit" value="查询天气">
+		</form>
+		<p>城市：<b>{{weather.city}},{{weather.country}}</b></p>
+		<p>{{weather.description}}|{{weather.temperature}}&#8451;</p>
+		<h2>汇率</h2>
+		<form>
+			from:<select name="currency_from">
+				{% for currency in currencies %}
+				<option value="{{currency}}"
+				{{'selected="selected"' if currency_from==currency}}>
+				{{currency}}</option>
+				{% endfor %}
+				</select>
+
+			to:<select name="currency_to">
+				{% for currency in currencies %}
+				<option value="{{currency}}"
+				{{'selected="selected"' if currency_to==currency}}>
+				{{currency}}</option>
+				{% endfor %}
+			</select>
+			     <input type="submit" value="转换">
+		</form>
+
+		1 {{currency_from}}={{currency_to}} {{rate}}
+		<h2>今日头条</h2>
 		{% for article in articles %}
 		<b><a href="{{article.link}}">{{article.title}}</a></b><br/>
 		<i>{{article.published}}</i><br />
