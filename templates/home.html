@@ -20,15 +20,13 @@
 		<p>{{weather.description}}|{{weather.temperature}}&#8451;</p>
 		<h2>汇率</h2>
 		<form>
-			from:<select name="currency_from">
+			从:<select name="currency_from">
 				{% for currency in currencies %}
-				<option value="{{currency}}"
-				{{'selected="selected"' if currency_from==currency}}>
-				{{currency}}</option>
+				<option value="{{currency}}"{{'selected="selected"' if currency_from==currency}}>{{currency}}</option>
 				{% endfor %}
 				</select>
 
-			to:<select name="currency_to">
+			转换成:<select name="currency_to">
 				{% for currency in currencies %}
 				<option value="{{currency}}"
 				{{'selected="selected"' if currency_to==currency}}>
