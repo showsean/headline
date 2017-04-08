@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>头条</title>
+	</head>
+	<body>
+		<h1>头条</h1>
+		{% for article in articles %}
+		<b><a href="{{article.link}}">{{article.title}}</a></b><br/>
+		<i>{{article.published}}</i><br />
+		<p>{{article.summary}}</p>
+		<hr/>
+		{% endfor %}
+	</body>
+</html>
