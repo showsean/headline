@@ -14,7 +14,7 @@ app.config.update(dict(SECRET_KEY="dfghjmnbvfdertyujn"))
 FEED = {'qq':"http://news.qq.com/newsgn/rss_newsgn.xml",
         'rm':'http://www.people.com.cn/rss/politics.xml',
         'sina':'http://rss.sina.com.cn/news/china/focus15.xml',
-        'yueguang':'http://feed.williamlong.info/'}
+        'yuguang':'http://feed.williamlong.info/'}
 api_url="https://api.seniverse.com/v3/weather/now.json?key=gz4j3y0rz4jqmpr4&location={}&language=zh-Hans&unit=c"
 CURRENCY_URL="https://openexchangerates.org//api/latest.json?app_id=6ce9f26fd62c4c7b967f736b9aa48d97"
 
@@ -44,7 +44,7 @@ def home():
         currency_to=DEFAULTS["currency_to"]
     rate,currencies=get_rate(currency_from,currency_to)
     return render_template("home.html",articles=articles,weather=weather,
-                          currency_to=currency_to,currency_from=currency_from,rate=rate,currencies=sorted(currencies))
+                          currency_to=currency_to,currency_from=currency_from,rate=rate,currencies=sorted(currencies),publication=publication)
 
 def get_news(query):
     if not query or query.lower() not in FEED:

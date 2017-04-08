@@ -1,7 +1,12 @@
 <html>
 	<form>
-		<input type="text" name="publication" placeholder="查询新闻站点"/>
-		<input type="submit" value="搜索"/>
+		<select name="publication">
+			<option value="qq"{{'selected="selected"' if publication=="qq"}}>腾讯新闻</option>
+			<option value="sina"{{'selected="selected"' if publication=="sina"}}>新浪新闻</option>
+			<option value="yuguang"{{'selected="selected"' if publication=="yuguang"}}>月光博客</option>
+			<option value="rm"{{'selected="selected"' if publication=="rm"}}>人民网</option>
+		</select>
+		<input type="submit" value="选择RSS站点"/>
 	</form>
 	<head>
 		<title>头条</title>
